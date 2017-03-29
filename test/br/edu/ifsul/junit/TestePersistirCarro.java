@@ -43,13 +43,13 @@ public class TestePersistirCarro {
         boolean exception = false;
         try {
             Carro c = new Carro();
-            c.setPalca("ITR 3045");
-            c.setRenavam("987654321");
-            c.setModelo("Gol");
-            c.setFabricante("VW");
+            c.setPalca("IJG 1596");
+            c.setRenavam("97845123");
+            c.setModelo("HB20");
+            c.setFabricante("Hyndai");
             c.setAnoFabricacao(2017);
             c.setAnoModelo(2017);
-            c.setPessoa(em.find(Pessoa.class, 2));
+            c.setPessoa(em.find(Pessoa.class, 3));
                     
             em.getTransaction().begin();
             em.persist(c);

@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -74,6 +76,10 @@ public class Carro implements Serializable{
     @ForeignKey(name = "fK_pessoa_id")
     private Pessoa pessoa;
     
+    @ManyToMany
+    @JoinTable(name = "listaAcessorios",
+            joinColumns = @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "acessorios", referencedColumnName = "id", nullable = false))
     List<Acessorios> listaAcessorio = new ArrayList<>();
     
     public Carro(){

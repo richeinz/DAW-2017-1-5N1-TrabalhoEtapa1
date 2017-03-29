@@ -49,7 +49,10 @@ public class TestePersistirSeguro {
             s.setCarro(em.find(Carro.class, 4));
             s.setCorretor(em.find(Corretor.class, 5));
             s.setData(Calendar.getInstance());
-            s.setInicioVigencia();
+            s.setInicioVigencia(Calendar.getInstance());
+            s.setFimVigencia(Calendar.getInstance());
+            s.setValorTotal(1200.22);
+            s.setValorFipe(45000.00);
                     
             em.getTransaction().begin();
             em.persist(s);
