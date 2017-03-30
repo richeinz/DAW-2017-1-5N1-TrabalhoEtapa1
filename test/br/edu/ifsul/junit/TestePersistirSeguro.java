@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsul.junit;
 
 import br.edu.ifsul.modelo.Carro;
 import br.edu.ifsul.modelo.Corretor;
-import br.edu.ifsul.modelo.Pessoa;
 import br.edu.ifsul.modelo.Seguro;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
