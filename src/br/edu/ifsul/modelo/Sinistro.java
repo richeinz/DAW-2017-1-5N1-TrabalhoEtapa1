@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -30,29 +21,39 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author Ricardo
  */
 @Entity
-@Table(name = "cobertura")
-public class Cobertura implements Serializable {
-
+@Table(name = "sinistro")
+public class Sinistro implements Serializable{
     @Id
-    @SequenceGenerator(name = "seq_cobertura", sequenceName = "seq_cobertura_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_cobertura", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "seq_sinistro", sequenceName = "seq_sinistro_id", allocationSize = 1)
     private Integer id;
-    @Length(max = 50, message = "A descrição não pode ter mais que {max} caracteres")
+    
     @NotNull(message = "A descrição deve ser informado")
     @NotBlank(message = "A descrição não pode ser em branco")
-    @Column(name = "descricao", length = 50, nullable = false)
+    @Column(name = "descricao", nullable = false)
     private String descricao;
-    @Digits(integer = 10, fraction = 2)
-    @NotNull(message = "O valor deve ser informado")
-    @Column(name = "valor", nullable = false, columnDefinition = "numeric(12,2)")
-    private Double valor;
+    
+    @NotNull(message = "A data deve ser informada")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data", nullable = false)
+    private Calendar data;
+    
+    @NotNull(message = "A cidade deve ser informada")
+    @NotBlank(message = "A cidade não pode ser em branco")
+    @Column(name = "cidade", nullable = false)
+    private String cidade;
+    
+    @NotNull(message = "O estado deve ser informado")
+    @NotBlank(message = "O estado não pode ser em branco")
+    @Column(name = "estado", nullable = false)
+    private String estado;
+    
     @NotNull(message = "O seguro deve ser informada")
     @ManyToOne
     @JoinColumn(name = "seguro_id", referencedColumnName = "id", nullable = false)
     private Seguro seguro;
-
-    public Cobertura() {
-
+    
+    public Sinistro(){
+        
     }
 
     public Integer getId() {
@@ -71,26 +72,34 @@ public class Cobertura implements Serializable {
         this.descricao = descricao;
     }
 
-    public Double getValor() {
-        return valor;
+    public Calendar getData() {
+        return data;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setData(Calendar data) {
+        this.data = data;
     }
 
-    public Seguro getSeguro() {
-        return seguro;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setSeguro(Seguro seguro) {
-        this.seguro = seguro;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -105,11 +114,11 @@ public class Cobertura implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cobertura other = (Cobertura) obj;
+        final Sinistro other = (Sinistro) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
+    
 }
