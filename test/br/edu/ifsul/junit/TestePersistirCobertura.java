@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsul.junit;
 
-import br.edu.ifsul.modelo.Acessorios;
-import br.edu.ifsul.modelo.Carro;
-import br.edu.ifsul.modelo.Pessoa;
+import br.edu.ifsul.modelo.Cobertura;
+import br.edu.ifsul.modelo.Seguro;
+import br.edu.ifsul.modelo.Sinistro;
+import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,11 +16,11 @@ import org.junit.Test;
  *
  * @author Ricardo
  */
-public class TestePersistirAcessorio {
+public class TestePersistirCobertura {
     EntityManagerFactory emf;
     EntityManager em;
     
-    public TestePersistirAcessorio() {
+    public TestePersistirCobertura() {
     }
     
     @Before
@@ -43,11 +39,13 @@ public class TestePersistirAcessorio {
     public void testar(){
         boolean exception = false;
         try {
-            Acessorios a = new Acessorios();
-            a.setDescrcao("CD - dispositivo de audio");
-                    
+            Seguro s = new Seguro();
+            Cobertura c = new Cobertura();
+            c.setDescricao("BlaBlaBla");
+            c.setValor(1000.00);
+            c.setSeguro(em.find(Seguro.class, 1));
             em.getTransaction().begin();
-            em.persist(a);
+            em.persist(c);
             em.getTransaction().commit();
         }catch(Exception e){
             exception = true;

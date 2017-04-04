@@ -6,6 +6,8 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -38,6 +43,12 @@ public class Acessorios implements Serializable{
     @NotBlank(message = "A descrição não pode ser em branco")
     @Column(name = "descricao", length = 50, nullable = false)
     private String descricao;
+    
+    @ManyToMany
+    @JoinTable(name = "possuiAcessorio",
+            joinColumns = @JoinColumn(name = "acessorio", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false))
+    private List<Carro> possuiAcessorio = new ArrayList<>();
     
     
     public Acessorios(){
