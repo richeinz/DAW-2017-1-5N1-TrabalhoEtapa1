@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,6 +27,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Sinistro implements Serializable{
     @Id
     @SequenceGenerator(name = "seq_sinistro", sequenceName = "seq_sinistro_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_sinistro", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
     @NotNull(message = "A descrição deve ser informado")
@@ -74,6 +77,14 @@ public class Sinistro implements Serializable{
 
     public Calendar getData() {
         return data;
+    }
+
+    public Seguro getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro(Seguro seguro) {
+        this.seguro = seguro;
     }
 
     public void setData(Calendar data) {

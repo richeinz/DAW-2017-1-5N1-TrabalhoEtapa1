@@ -77,10 +77,10 @@ public class Carro implements Serializable{
     private Pessoa pessoa;
     
     @ManyToMany
-    @JoinTable(name = "listaAcessorios",
+    @JoinTable(name = "lista_acessorio",
             joinColumns = @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "acessorios", referencedColumnName = "id", nullable = false))
-    List<Acessorios> listaAcessorio = new ArrayList<>();
+            inverseJoinColumns = @JoinColumn(name = "acessorio", referencedColumnName = "id", nullable = false))
+    private List<Acessorios> listaAcessorio = new ArrayList<>();
     
     public Carro(){
         
@@ -215,6 +215,14 @@ public class Carro implements Serializable{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public List<Acessorios> getListaAcessorio() {
+        return listaAcessorio;
+    }
+
+    public void setListaAcessorio(List<Acessorios> listaAcessorio) {
+        this.listaAcessorio = listaAcessorio;
     }
     
     

@@ -6,14 +6,19 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -65,8 +70,30 @@ public class Seguro implements Serializable{
     @ForeignKey(name = "fK_carro_id")
     private Carro carro;
     
+    @OneToMany(mappedBy = "seguro", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Sinistro> sinistros = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "seguro", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Cobertura> coberturas = new ArrayList<>();
+    
     public Seguro(){
         
+    }
+
+    public List<Cobertura> getCoberturas() {
+        return coberturas;
+    }
+
+    public void setCoberturas(List<Cobertura> coberturas) {
+        this.coberturas = coberturas;
+    }
+
+    public List<Sinistro> getSinistros() {
+        return sinistros;
+    }
+
+    public void setSinistros(List<Sinistro> sinistros) {
+        this.sinistros = sinistros;
     }
 
     public Integer getId() {

@@ -45,7 +45,7 @@ public class Acessorios implements Serializable{
     private String descricao;
     
     @ManyToMany
-    @JoinTable(name = "possuiAcessorio",
+    @JoinTable(name = "lista_acessorio",
             joinColumns = @JoinColumn(name = "acessorio", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false))
     private List<Carro> possuiAcessorio = new ArrayList<>();
@@ -94,6 +94,22 @@ public class Acessorios implements Serializable{
             return false;
         }
         return true;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public List<Carro> getPossuiAcessorio() {
+        return possuiAcessorio;
+    }
+
+    public void setPossuiAcessorio(List<Carro> possuiAcessorio) {
+        this.possuiAcessorio = possuiAcessorio;
     }
     
     

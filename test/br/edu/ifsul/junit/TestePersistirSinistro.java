@@ -40,12 +40,13 @@ public class TestePersistirSinistro {
     public void testar(){
         boolean exception = false;
         try {
-            Seguro seg = em.find(Seguro.class, 1);
+            Seguro seg = em.find(Seguro.class, 2);
             Sinistro s = new Sinistro();
-            s.setCidade("Passo Fundo");
+            s.setCidade("Pouso Alegre");
             s.setEstado("RS");
             s.setData(Calendar.getInstance());
-            s.setDescricao("O sinistro ocorreu em um dia de chuva...blá blá blá");
+            s.setDescricao("sinistro em um dia de sol...blá blá blá");
+            s.setSeguro(seg);
             em.getTransaction().begin();
             em.persist(s);
             em.getTransaction().commit();
