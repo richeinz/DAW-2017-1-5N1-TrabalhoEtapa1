@@ -8,10 +8,13 @@ package br.edu.ifsul.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,8 +24,8 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "corretor")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Corretor extends Pessoa implements Serializable{
+     
     //perentualComissao
     @NotNull(message = "O percentual de comissão deve ser informado")
     @Column(name = "percentualComissao", columnDefinition = "numeric(3,1)")
@@ -85,5 +88,7 @@ public class Corretor extends Pessoa implements Serializable{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+   
     
 }

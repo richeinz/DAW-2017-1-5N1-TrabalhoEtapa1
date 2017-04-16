@@ -39,10 +39,10 @@ public class Carro implements Serializable{
     private Integer id;
     
     @Length(max = 10, message = "A placa não pode ter mais que {max} caracteres")
-    @NotNull(message = "A palca deve ser informada")
+    @NotNull(message = "A placa deve ser informada")
     @NotBlank(message = "A placa não pode ser em branco")
     @Column(name = "placa", length = 10, nullable = false)
-    private String palca;
+    private String placa;
     
     @Length(max = 30, message = "O renavam não pode ter mais que {max} caracteres")
     @NotNull(message = "O renavam deve ser informado")
@@ -103,15 +103,15 @@ public class Carro implements Serializable{
     /**
      * @return the palca
      */
-    public String getPalca() {
-        return palca;
+    public String getPlaca() {
+        return placa;
     }
 
     /**
      * @param palca the palca to set
      */
-    public void setPalca(String palca) {
-        this.palca = palca;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     /**

@@ -34,19 +34,19 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Acessorios implements Serializable{
     @Id
-    @SequenceGenerator(name = "seq_acessorio", sequenceName = "seq_acessorio_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_acessorio", strategy = GenerationType.SEQUENCE)    
+    @SequenceGenerator(name = "seq_acessorios", sequenceName = "seq_acessorios_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_acessorios", strategy = GenerationType.SEQUENCE)    
     private Integer id;
     
-    @Length(max = 50, message = "A descrção não pode ter mais que {max} caracteres")
+    @Length(max = 50, message = "A descrição não pode ter mais que {max} caracteres")
     @NotNull(message = "A descrição deve ser informada")
     @NotBlank(message = "A descrição não pode ser em branco")
     @Column(name = "descricao", length = 50, nullable = false)
     private String descricao;
     
     @ManyToMany
-    @JoinTable(name = "lista_acessorio",
-            joinColumns = @JoinColumn(name = "acessorio", referencedColumnName = "id", nullable = false),
+    @JoinTable(name = "lista_acessorios",
+            joinColumns = @JoinColumn(name = "acessorios", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false))
     private List<Carro> possuiAcessorio = new ArrayList<>();
     
